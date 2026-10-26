@@ -129,34 +129,34 @@
 
 ---
 
-### Fase 3: Ecosistema y Servidores MCP (Model Context Protocol) `[Pendiente]`
+### Fase 3: Ecosistema y Servidores MCP (Model Context Protocol) `[Completada]`
 > **Objetivo de la Fase:** Evaluar, catalogar e integrar servidores MCP locales y remotos para dotar a los agentes de capacidades de inspección de código, base de datos y depuración sin riesgo.  
-> **Progreso:** 0/5 Tareas (0%)
+> **Progreso:** 5/5 Tareas (100%)
 
-- [ ] **[F3-T01] Estructura del Catálogo MCP y Plantilla Base**
-  - **Descripción:** Definir la estructura de carpetas en `mcp/` con manifiestos, variables de entorno y documentación de herramientas expuestas.
-  - **Archivos:** `mcp/README.md`, `mcp/templates/`
-  - **Criterio de Aceptación:** Estándar claro para registrar cualquier servidor MCP nuevo.
+- [X] **[F3-T01] Estructura del Catálogo MCP y Plantilla Base**
+  - **Descripción:** Definición de la estructura de carpetas en `mcp/`, catálogo centralizado `mcp/catalog.json`, plantillas de auditoría y CLI `tools/mcp_manager.py`.
+  - **Archivos:** `mcp/README.md`, `mcp/catalog.json`, `mcp/templates/`, `mcp/configs/`, `tools/mcp_manager.py`
+  - **Criterio de Aceptación:** Estándar claro para registrar, auditar y exportar configuraciones a Antigravity.
 
-- [ ] **[F3-T02] Integración de Chrome DevTools MCP**
-  - **Descripción:** Evaluar e integrar `ChromeDevTools/chrome-devtools-mcp` para inspección en tiempo real de páginas web, consolas y red.
-  - **Archivos:** `mcp/chrome-devtools/`
-  - **Criterio de Aceptación:** Servidor funcional comunicándose por `stdio`.
+- [X] **[F3-T02] Integración y auditoría de Chrome DevTools MCP**
+  - **Descripción:** Evaluación, auditoría de seguridad y configuración de `ChromeDevTools/chrome-devtools-mcp` para inspección en tiempo real de páginas web, consolas y red con aislamiento (`--isolated`) y telemetría desactivada.
+  - **Archivos:** `mcp/configs/chrome-devtools.json`, `mcp/evaluated/chrome-devtools.md`, `mcp/catalog.json`
+  - **Criterio de Aceptación:** Auditoría completada, reporte técnico generado y configuración lista para importación.
 
-- [ ] **[F3-T03] Integración de Codebase Memory MCP**
-  - **Descripción:** Evaluar e integrar `DeusData/codebase-memory-mcp` para dotar a los agentes de memoria contextual persistente sobre proyectos grandes.
-  - **Archivos:** `mcp/codebase-memory/`
-  - **Criterio de Aceptación:** Indexación local de código y recuperación contextual.
+- [X] **[F3-T03] Integración y auditoría de Codebase Memory MCP**
+  - **Descripción:** Evaluación técnica de `DeusData/codebase-memory-mcp` para indexación de árboles sintácticos (Tree-sitter) y grafos de llamadas locales en SQLite, reduciendo el consumo de tokens en repositorios grandes.
+  - **Archivos:** `mcp/configs/codebase-memory.json`, `mcp/evaluated/codebase-memory.md`, `mcp/catalog.json`
+  - **Criterio de Aceptación:** Auditoría aprobada, reporte generado y configuración lista.
 
-- [ ] **[F3-T04] Sandbox y Emulación Local con `vercel-labs/emulate`**
-  - **Descripción:** Configurar un entorno local con `emulate` para permitir a herramientas MCP interactuar con APIs simuladas (GitHub, Stripe, AWS) sin gastar saldo.
-  - **Archivos:** `tools/emulate_sandbox/`
-  - **Criterio de Aceptación:** Servidor mock respondiendo con estado persistente.
+- [X] **[F3-T04] Sandbox y Emulación Local con `vercel-labs/emulate`**
+  - **Descripción:** Herramienta de sandbox local (`tools/sandbox_runner.py`) para emular 14 servicios externos (GitHub, AWS, Stripe, Slack) con estado persistente, permitiendo probar servidores MCP sin gastar saldo ni exponer credenciales.
+  - **Archivos:** `tools/sandbox_runner.py`, `research/batch2_repo_evaluations.md`
+  - **Criterio de Aceptación:** Servidor mock ejecutable y verifiable con `check` y `start`.
 
-- [ ] **[F3-T05] Generador interactivo de configuraciones MCP (`mcp_config_builder.py`)**
-  - **Descripción:** Script auxiliar para generar los bloques de configuración JSON de servidores MCP compatibles con Antigravity, Claude Desktop o Cursor.
-  - **Archivos:** `tools/mcp_config_builder.py`
-  - **Criterio de Aceptación:** Generación automática de archivos `mcp_settings.json`.
+- [X] **[F3-T05] Generador y exportador de configuraciones MCP (`tools/mcp_manager.py`)**
+  - **Descripción:** Herramienta CLI para consultar el catálogo, inspeccionar esquemas y exportar automáticamente bloques consolidados `mcpServers` para Antigravity, Claude Code y Cursor.
+  - **Archivos:** `tools/mcp_manager.py`, `mcp/configs/`
+  - **Criterio de Aceptación:** Comando `python tools/mcp_manager.py export --target antigravity` funcional.
 
 ---
 

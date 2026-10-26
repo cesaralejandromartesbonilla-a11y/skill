@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "last_updated": "2026-10-26",
+  "servers": [
+    {
+      "id": "claude-mem",
+      "name": "Claude-Mem Persistent Memory",
+      "category": "memory",
+      "description": "Sistema de memoria persistente continua entre sesiones, compresión de observaciones y búsqueda semántica híbrida.",
+      "repository": "https://github.com/thedotmack/claude-mem",
+      "package": "claude-mem",
+      "transport": "stdio",
+      "status": "operational",
+      "security_tier": "safe",
+      "config": {
+        "command": "bun",
+        "args": ["run", "C:\\Users\\cesar\\.claude\\plugins\\marketplaces\\thedotmack\\plugin\\scripts\\worker-service.cjs", "mcp"],
+        "env": {}
+      },
+      "tools_provided": [
+        "mem_search",
+        "mem_read",
+        "mem_list_projects",
+        "mem_status"
+      ]
+    },
+    {
+      "id": "chrome-devtools",
+      "name": "Chrome DevTools MCP",
+      "category": "debugging",
+      "description": "Herramientas de depuración directa para agentes de código: consola, red, DOM y rendimiento vía Chrome DevTools Protocol.",
+      "repository": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "package": "chrome-devtools-mcp",
+      "transport": "stdio",
+      "status": "operational",
+      "security_tier": "safe",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "chrome-devtools-mcp@latest", "--isolated"],
+        "env": {
+          "CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS": "1",
+          "CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS": "1"
+        }
+      },
+      "tools_provided": [
+        "navigate_page",
+        "new_page",
+        "close_page",
+        "fill_form",
+        "click",
+        "inspect_network",
+        "read_console_logs",
+        "take_screenshot",
+        "performance_start_trace"
+      ]
+    },
+    {
+      "id": "codebase-memory",
+      "name": "Codebase Memory MCP",
+      "category": "code-intelligence",
+      "description": "Inteligencia y memoria local de base de código. Conecta código, documentación y relaciones estructurales de proyectos.",
+      "repository": "https://github.com/DeusData/codebase-memory-mcp",
+      "package": "codebase-memory-mcp",
+      "transport": "stdio",
+      "status": "verified",
+      "security_tier": "safe",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "codebase-memory-mcp@latest"],
+        "env": {}
+      },
+      "tools_provided": [
+        "query_architecture",
+        "find_symbol_definition",
+        "trace_dependencies"
+      ]
+    },
+    {
+      "id": "github-official",
+      "name": "GitHub Official MCP Server",
+      "category": "version-control",
+      "description": "Servidor MCP oficial de GitHub para interactuar con repositorios, PRs, issues y ramas.",
+      "repository": "https://github.com/github/github-mcp-server",
+      "package": "github-mcp-server",
+      "transport": "stdio",
+      "status": "verified",
+      "security_tier": "requires-token",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+        }
+      },
+      "tools_provided": [
+        "search_repositories",
+        "create_issue",
+        "create_pull_request",
+        "get_file_contents"
+      ]
+    },
+    {
+      "id": "sqlite-local",
+      "name": "SQLite Local Server",
+      "category": "database",
+      "description": "Inspección, consulta y depuración de bases de datos SQLite locales en modo seguro de lectura.",
+      "repository": "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+      "package": "@modelcontextprotocol/server-sqlite",
+      "transport": "stdio",
+      "status": "verified",
+      "security_tier": "safe",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db-path", "${SQLITE_DB_PATH}"],
+        "env": {}
+      },
+      "tools_provided": [
+        "read_query",
+        "list_tables",
+        "describe_table"
+      ]
+    },
+    {
+      "id": "asset-porter-3d",
+      "name": "Universal 3D Asset Porter MCP",
+      "category": "game-dev",
+      "description": "Servidor MCP interno para invocar la suite de extracción y conversión (Unity/Unreal a Blender 5.0 y Godot 4.6).",
+      "repository": "local://skills/universal-asset-porter",
+      "package": "local",
+      "transport": "stdio",
+      "status": "operational",
+      "security_tier": "safe",
+      "config": {
+        "command": "python",
+        "args": ["tools/asset_converter.py"],
+        "env": {}
+      },
+      "tools_provided": [
+        "convert_asset",
+        "dump_unity_assets",
+        "port_to_godot"
+      ]
+    }
+  ]
+}

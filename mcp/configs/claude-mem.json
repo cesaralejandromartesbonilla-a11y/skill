@@ -1,0 +1,11 @@
+{
+  "claude-mem": {
+    "command": "bun",
+    "args": [
+      "run",
+      "C:\\Users\\cesar\\.claude\\plugins\\marketplaces\\thedotmack\\plugin\\scripts\\worker-service.cjs",
+      "mcp"
+    ],
+    "env": {}
+  }
+}

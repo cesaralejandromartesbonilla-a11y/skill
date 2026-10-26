@@ -1,0 +1,10 @@
+{
+  "codebase-memory": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "codebase-memory-mcp@latest"
+    ],
+    "env": {}
+  }
+}

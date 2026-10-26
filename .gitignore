@@ -7,6 +7,12 @@ __pycache__/
 .venv/
 venv/
 
+# Agents local runtime
+.agents/
+
+# External cloned source repos used for research
+research/*_source/
+
 # IDE & OS
 .vscode/
 .idea/
@@ -18,3 +24,4 @@ Desktop.ini
 *.log
 tmp/
 temp/
+

@@ -115,4 +115,8 @@ Este documento sirve como **ancla de intención**. Si en algún momento el repos
 
 | Fecha | Acción / Registro | Categoría | Estado / Notas |
 | :--- | :--- | :--- | :--- |
-| *Inicial* | Definición de visión fundacional y documento maestro | Arquitectura | Activo |
+| 2026-10-25 | Definición de visión fundacional y documento maestro | Arquitectura | Activo |
+| 2026-10-25 | Auditoría y evaluación de la triada inicial (`vercel-labs/skills`, `tt-a1i/archify`, `google-research/harness2`) | Investigación | Documentado en `research/initial_repo_evaluations.md` |
+| 2026-10-25 | Integración del CLI universal `skills` y adopción de la skill de producción `archify` en `skills/archify` | Skills | Operativo |
+| 2026-10-25 | Creación de la herramienta de exploración de ecosistema `tools/search_ecosystem.py` | Herramientas | Operativo |
+

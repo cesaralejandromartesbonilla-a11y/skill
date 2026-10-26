@@ -27,7 +27,7 @@
 
 ### Fase 1: Cimientos, Descubrimiento e Infraestructura Base `[Completada]`
 > **Objetivo de la Fase:** Establecer el repositorio, las reglas inalterables de alcance, herramientas de descubrimiento de skills/MCP y adoptar las primeras referencias arquitectónicas.  
-> **Progreso:** 8/8 Tareas Completadas (100%)
+> **Progreso:** 10/10 Tareas Completadas (100%)
 
 - [X] **[F1-T01] Manifiesto fundacional y protocolo de rollback**
   - **Descripción:** Redacción de `README.md`, configuración de `.gitignore` e inicialización de repositorio Git con commit ancla para reversión segura.
@@ -68,6 +68,16 @@
   - **Descripción:** Desarrollo de la skill para mantener en paralelo una hoja técnica exhaustiva viva y un resumen ejecutivo visual, con script de cálculo Unicode.
   - **Archivos:** `skills/dual-roadmap/SKILL.md`, `templates/`, `scripts/sync_roadmaps.py`
   - **Criterio de Aceptación:** Script de sincronización funcional y plantillas normalizadas.
+
+- [X] **[F1-T09] Integración de memoria persistente entre sesiones (`claude-mem`)**
+  - **Descripción:** Integración nativa de `claude-mem` en Antigravity con 5 hooks de ciclo de vida (`SessionStart`, `PreToolUse`, `PostToolUse`, `PostInvocation`, `Stop`) y configuración de servidor MCP.
+  - **Archivos:** `~/.gemini/config/hooks.json`, `~/.gemini/config/mcp_config.json`, `research/batch3_repo_evaluations.md`
+  - **Criterio de Aceptación:** Estado verificado con `claude-mem antigravity-cli status` (5/5 eventos mapeados y MCP registrado).
+
+- [X] **[F1-T10] Adopción de la suite de diseño UI y calidad artesanal (`impeccable`)**
+  - **Descripción:** Incorporación del framework de Paul Bakaus para elevar el listón visual y de UX en componentes web, dashboards y landing pages, eliminando el "AI design slop".
+  - **Archivos:** `skills/impeccable/` (`SKILL.md`, `reference/`, `agents/`, `scripts/`)
+  - **Criterio de Aceptación:** Modos Persuade, Operate, Read y comandos `shape`, `critique`, `document`, `extract` disponibles.
 
 ---
 

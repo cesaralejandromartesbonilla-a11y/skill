@@ -16,6 +16,11 @@ import subprocess
 import argparse
 from pathlib import Path
 
+import io
+
+if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 # Ruta fija por defecto a Blender 5.0
 BLENDER_DEFAULT_PATH = r"C:\Program Files\Blender Foundation\Blender 5.0\blender.exe"
 BRIDGE_SCRIPT = Path(__file__).parent / "blender_universal_bridge.py"
@@ -91,6 +96,29 @@ def handle_unity_to_glb(args, blender_path):
     run_blender_bridge(blender_path, bridge_args)
     print(f"[✓] Proceso completado: {args.output}")
 
+def handle_source_to_glb(args, blender_path):
+    """Convierte activos de Valve Source Engine (.smd, .dmx, .obj, .mdl) a GLB para Godot 4.6."""
+    source_file = Path(args.input)
+    if not source_file.is_file():
+        print(f"[!] Error: Archivo Source no encontrado: {source_file}")
+        sys.exit(1)
+        
+    print(f"[*] Procesando modelo Source ({source_file.suffix}) hacia Godot GLB...")
+    bridge_args = [
+        "--mesh", str(source_file),
+        "--output", args.output
+    ]
+    if args.name: bridge_args += ["--name", args.name]
+    if args.albedo: bridge_args += ["--albedo", args.albedo]
+    if args.normal: bridge_args += ["--normal", args.normal]
+    if args.roughness: bridge_args += ["--roughness", args.roughness]
+    if args.metallic: bridge_args += ["--metallic", args.metallic]
+    if args.anims: bridge_args += ["--anims"] + args.anims
+    if args.two_sided: bridge_args += ["--two-sided"]
+    
+    run_blender_bridge(blender_path, bridge_args)
+    print(f"[✓] Modelo de Source Engine convertido exitosamente a GLB: {args.output}")
+
 def main():
     parser = argparse.ArgumentParser(description="Universal Asset Converter (Unity/Unreal to Blender 5.0/Godot)")
     parser.add_argument("--blender-path", default=BLENDER_DEFAULT_PATH, help="Ruta al ejecutable de Blender")
@@ -127,6 +155,18 @@ def main():
     u2g_parser.add_argument("--albedo", help="Ruta a textura albedo")
     u2g_parser.add_argument("--normal", help="Ruta a textura normal")
     u2g_parser.add_argument("--two-sided", action="store_true", help="Material doble cara")
+
+    # Subcomando source-to-glb
+    s2g_parser = subparsers.add_parser("source-to-glb", help="Convierte modelos de Source Engine (.smd, .dmx, .obj) a GLB")
+    s2g_parser.add_argument("--input", required=True, help="Archivo .smd, .dmx, .obj o .mdl de Source Engine")
+    s2g_parser.add_argument("--output", required=True, help="Archivo .glb de salida")
+    s2g_parser.add_argument("--name", help="Nombre del modelo")
+    s2g_parser.add_argument("--albedo", help="Ruta a textura albedo/diffuse")
+    s2g_parser.add_argument("--normal", help="Ruta a textura normal")
+    s2g_parser.add_argument("--roughness", help="Ruta a textura roughness")
+    s2g_parser.add_argument("--metallic", help="Ruta a textura metallic")
+    s2g_parser.add_argument("--anims", nargs="+", help="Animaciones .smd / .dmx asociadas")
+    s2g_parser.add_argument("--two-sided", action="store_true", help="Material doble cara")
     
     args = parser.parse_args()
     
@@ -136,6 +176,8 @@ def main():
         handle_unity_dump(args)
     elif args.subcommand == "unity-to-glb":
         handle_unity_to_glb(args, args.blender_path)
+    elif args.subcommand == "source-to-glb":
+        handle_source_to_glb(args, args.blender_path)
 
 if __name__ == "__main__":
     main()

@@ -66,6 +66,20 @@ def import_mesh(mesh_path: Path):
             bpy.ops.import_scene.uemodel(filepath=str(mesh_path))
         else:
             raise RuntimeError("El operador io_scene_ueformat no está habilitado.")
+    elif ext in [".smd", ".dmx"]:
+        if hasattr(bpy.ops.import_scene, "smd"):
+            bpy.ops.import_scene.smd(filepath=str(mesh_path))
+        elif hasattr(bpy.ops.import_scene, "source_engine"):
+            bpy.ops.import_scene.source_engine(filepath=str(mesh_path))
+        else:
+            raise RuntimeError("El operador para importar SMD/DMX (Blender Source Tools o SourceIO) no está instalado en Blender.")
+    elif ext in [".mdl", ".vmdl", ".vmdl_c"]:
+        if hasattr(bpy.ops, "sourceio") and hasattr(bpy.ops.sourceio, "mdl"):
+            bpy.ops.sourceio.mdl(filepath=str(mesh_path))
+        elif hasattr(bpy.ops.import_scene, "mdl"):
+            bpy.ops.import_scene.mdl(filepath=str(mesh_path))
+        else:
+            raise RuntimeError(f"Para importar directamente {ext} de Valve Source, instale el addon SourceIO en Blender o descompile a .smd / .obj mediante Crowbar.")
     else:
         raise ValueError(f"Formato de malla no soportado: {ext}")
 

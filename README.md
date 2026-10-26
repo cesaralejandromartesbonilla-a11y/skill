@@ -129,6 +129,7 @@ Este documento sirve como **ancla de intención**. Si en algún momento el repos
 | 2026-10-26 | Cierre completo de la Fase 3: Catálogo MCP formal (`catalog.json`), auditorías de seguridad, `tools/mcp_manager.py` y runner de sandbox con `emulate` | Ecosistema MCP | Fase 3 al 100% (66.7% global) |
 | 2026-10-26 | Cierre completo de la Fase 4: Auto-refinamiento recursivo de skills con Harness² (`harness2_implementation_guide.md`), validador (`tools/validate_skill.py`), benchmark de contexto (`tools/benchmark_skills.py`) y reflector continuo (`research/lessons_learned.md`) | Auto-Refinamiento | Fase 4 al 100% (80.0% global) |
 | 2026-10-26 | Cierre completo de la Fase 5: Automatización web ultraligera y apps Electron con `agent-browser` (`agent_browser_runner.py`), skill `web-dogfooding` y skill `electron-automator` con launcher CDP | Navegación Web/App | Fase 5 al 100% (90.0% global) |
+| 2026-10-26 | Cierre completo de la Fase 2: Validación con caso real de Unity (`export/kobold_godot_ready.glb` 30.43 MB con rig de 70 huesos y 7 animaciones), extensión Valve Source (`source-to-glb`) y guía de volcado VRAM con RenderDoc (`renderdoc_vram_ripping.md`) | Interoperabilidad 3D | Fase 2 al 100% (100.0% Global) |
 | 2026-10-25 | Integración del CLI universal `skills` y adopción de la skill de producción `archify` en `skills/archify` | Skills | Operativo |
 | 2026-10-25 | Creación de la herramienta de exploración de ecosistema `tools/search_ecosystem.py` | Herramientas | Operativo |
 

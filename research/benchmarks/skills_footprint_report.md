@@ -1,18 +1,18 @@
 # Benchmark de Desempeño y Huella de Skills
 > **Directorio Auditado:** `C:\Users\cesar\Desktop\skill\skills`  
-> **Total de Skills Analizadas:** 15  
-> **Huella Total Estimada en Contexto:** ~27,224 tokens (~106.3 KB)
+> **Total de Skills Analizadas:** 17  
+> **Huella Total Estimada en Contexto:** ~29,072 tokens (~113.6 KB)
 
 ## 1. Resumen Ejecutivo (KPIs)
 
 | Métrica | Valor Global | Estado / Meta |
 | :--- | :---: | :--- |
-| **Skills Evaluadas** | **15** | Catálogo Activo |
-| **Tokens Totales (Payload)** | **~27,224** | Consumo pasivo si cargadas simultáneamente |
-| **Promedio por Skill** | **~1,815 tokens** | Target recomendado: < 2,000 tokens |
-| **Score SDO Promedio** | **84.7 / 100** | Claridad de descubrimiento de Anthropic/Superpowers |
-| **Calidad Estructural Promedio** | **51.7 / 100** | Adherencia a plantilla de secciones estándar |
-| **Skills Óptimas (Lean)** | **1 / 15** (7%) | Principio Ponytail (YAGNI) cumplido |
+| **Skills Evaluadas** | **17** | Catálogo Activo |
+| **Tokens Totales (Payload)** | **~29,072** | Consumo pasivo si cargadas simultáneamente |
+| **Promedio por Skill** | **~1,710 tokens** | Target recomendado: < 2,000 tokens |
+| **Score SDO Promedio** | **86.5 / 100** | Claridad de descubrimiento de Anthropic/Superpowers |
+| **Calidad Estructural Promedio** | **57.4 / 100** | Adherencia a plantilla de secciones estándar |
+| **Skills Óptimas (Lean)** | **3 / 17** (18%) | Principio Ponytail (YAGNI) cumplido |
 
 ## 2. Matriz Comparativa Detallada
 
@@ -28,8 +28,10 @@
 | `ponytail-audit` | **~1,354** | 103 | 75/100 | 0/100 | 0 | Balanced |
 | `ponytail-review` | **~1,286** | 101 | 75/100 | 0/100 | 0 | Balanced |
 | `universal-asset-porter` | **~1,274** | 108 | 75/100 | 50/100 | 0 | Balanced |
+| `web-dogfooding` | **~1,012** | 105 | 100/100 | 100/100 | 0 | Lean & Optimal |
 | `verification-before-completion` | **~900** | 120 | 100/100 | 75/100 | 0 | Lean & Optimal |
 | `ponytail` | **~874** | 52 | 75/100 | 50/100 | 0 | Balanced |
+| `electron-automator` | **~836** | 88 | 100/100 | 100/100 | 1 | Lean & Optimal |
 | `ponytail-help` | **~797** | 76 | 75/100 | 50/100 | 0 | Balanced |
 | `ponytail-gain` | **~496** | 52 | 75/100 | 50/100 | 0 | Balanced |
 | `ponytail-debt` | **~442** | 44 | 75/100 | 25/100 | 0 | Balanced |

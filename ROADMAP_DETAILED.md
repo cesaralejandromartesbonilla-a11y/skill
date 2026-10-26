@@ -160,26 +160,26 @@
 
 ---
 
-### Fase 4: Generación y Refinamiento Recursivo de Skills (Harness² Loop) `[Pendiente]`
+### Fase 4: Generación y Refinamiento Recursivo de Skills (Harness² Loop) `[Completada]`
 > **Objetivo de la Fase:** Implementar la ciencia de arneses de `google-research/harness2` para que el hub pueda generar, probar y optimizar sus propias skills de forma semi-autónoma.  
-> **Progreso:** 0/4 Tareas (0%)
+> **Progreso:** 4/4 Tareas (100%)
 
-- [ ] **[F4-T01] Adaptación del ciclo Propose–Probe–Compose**
+- [X] **[F4-T01] Adaptación del ciclo Propose–Probe–Compose**
   - **Descripción:** Diseñar el flujo de trabajo donde el agente propone cambios en sus componentes (prompt, guardrails, scripts), los prueba contra tareas de muestra y compone la versión mejorada.
   - **Archivos:** `research/harness2_implementation_guide.md`
   - **Criterio de Aceptación:** Flujo de optimización contrastiva documentado y ejecutable.
 
-- [ ] **[F4-T02] Validador y Quality Gates para `SKILL.md`**
+- [X] **[F4-T02] Validador y Quality Gates para `SKILL.md`**
   - **Descripción:** Herramienta que audita automáticamente si una nueva skill cumple con: descripción tipo "Use when...", ausencia de spoilers de flujo, pruebas TDD y frontmatter YAML válido.
-  - **Archivos:** `tools/validate_skill.py`
+  - **Archivos:** `tools/validate_skill.py`, `tests/test_validate_skill.py`
   - **Criterio de Aceptación:** Script que valida sintaxis y reglas de Anthropic/Superpowers.
 
-- [ ] **[F4-T03] Banco de Pruebas de Desempeño de Skills (Benchmark)**
+- [X] **[F4-T03] Banco de Pruebas de Desempeño de Skills (Benchmark)**
   - **Descripción:** Medir el impacto de las skills instaladas en consumo de tokens, número de pasos de resolución y tasa de éxito en tareas complejas.
-  - **Archivos:** `research/benchmarks/`
+  - **Archivos:** `tools/benchmark_skills.py`, `research/benchmarks/skills_footprint_report.md`
   - **Criterio de Aceptación:** Reporte comparativo de ahorro y precisión.
 
-- [ ] **[F4-T04] Biblioteca de Lecciones Aprendidas (Experience Reflector)**
+- [X] **[F4-T04] Biblioteca de Lecciones Aprendidas (Experience Reflector)**
   - **Descripción:** Registro centralizado de patrones exitosos y errores comunes observados durante el uso de herramientas en el workspace.
   - **Archivos:** `research/lessons_learned.md`
   - **Criterio de Aceptación:** Documento vivo de retroalimentación acumulativa.
@@ -229,4 +229,6 @@
 
 ## 5. Bitácora de Cambios del Plan (Change Log)
 
+- **2026-10-26 (v1.2.0):** Fase 4 (100% completada). Creados e implementados: guía conceptual de Harness² (`research/harness2_implementation_guide.md`), validador automático de skills (`tools/validate_skill.py`), suite de benchmark y reporte de huella de tokens (`tools/benchmark_skills.py`, `research/benchmarks/skills_footprint_report.md`), y repositorio continuo de lecciones aprendidas (`research/lessons_learned.md`).
+- **2026-10-26 (v1.1.0):** Fase 3 (100% completada). Catálogo formal MCP, audits de seguridad, sandbox `emulate` y CLI `mcp_manager.py`.
 - **2026-10-26 (v1.0.0):** Publicación inicial de la hoja de ruta exhaustiva. Fases 1 (100%) y 2 (62.5%) consolidadas; Fases 3, 4 y 5 formalizadas con objetivos WBS claros.

@@ -121,6 +121,8 @@ Este documento sirve como **ancla de intención**. Si en algún momento el repos
 | 2026-10-25 | Pipeline de Unity implementado (`tools/unity_asset_extractor.py`) con UnityPy y soporte OBJ/PNG | Herramientas | Operativo |
 | 2026-10-25 | Puente intermediario de Blender 5.0 (`tools/blender_universal_bridge.py`) y orquestador CLI (`tools/asset_converter.py`) | Herramientas | Operativo |
 | 2026-10-25 | Creación de la skill unificada `skills/universal-asset-porter` | Skills | Operativo |
+| 2026-10-25 | Auditoría y evaluación del Lote 2 (`emulate`, `ponytail`, `superpowers`, `agent-browser`) | Investigación | Documentado en `research/batch2_repo_evaluations.md` |
+| 2026-10-25 | Adopción de la suite `ponytail` (6 skills YAGNI) y skills metodológicas de `superpowers` (`writing-skills`, TDD, etc.) | Skills | Operativo |
 | 2026-10-25 | Integración del CLI universal `skills` y adopción de la skill de producción `archify` en `skills/archify` | Skills | Operativo |
 | 2026-10-25 | Creación de la herramienta de exploración de ecosistema `tools/search_ecosystem.py` | Herramientas | Operativo |
 

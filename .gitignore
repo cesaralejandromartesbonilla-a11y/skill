@@ -7,8 +7,9 @@ __pycache__/
 .venv/
 venv/
 
-# Agents local runtime
+# Agents local runtime & scratch
 .agents/
+.archify/
 
 # External cloned source repos used for research
 research/*_source/
@@ -26,6 +27,13 @@ Desktop.ini
 *.log
 tmp/
 temp/
+
+# Large binary exports & intermediate render tests
 export/*.glb
 export/*.fbx
+export/test_*.png
+export/verify_*.png
+export/verified_*.png
 
+# Generated HTML examples (can be regenerated with render-examples.mjs)
+skills/archify/examples/*.html

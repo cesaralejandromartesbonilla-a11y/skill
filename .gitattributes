@@ -1,0 +1,15 @@
+# GitHub Linguist overrides to keep repository language statistics accurate
+
+# Mark HTML files as generated so they do not dominate repo language stats
+*.html linguist-generated=true
+skills/archify/examples/*.html linguist-generated=true
+
+# Third-party vendored assets and HTML templates
+skills/archify/assets/template.html linguist-vendored=true
+skills/archify/explainer/vendor/** linguist-vendored=true
+skills/impeccable/scripts/modern-screenshot.umd.js linguist-vendored=true
+
+# Documentation, research, and PDF export figures
+export/** linguist-documentation=true
+research/** linguist-documentation=true
+*.md linguist-documentation=true

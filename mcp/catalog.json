@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "version": "1.0.0",
-  "last_updated": "2026-10-26",
+  "version": "1.1.0",
+  "last_updated": "2026-10-31",
   "servers": [
     {
       "id": "claude-mem",
@@ -23,6 +23,52 @@
         "mem_read",
         "mem_list_projects",
         "mem_status"
+      ]
+    },
+    {
+      "id": "blender-mcp",
+      "name": "Blender FastMCP Automation Server",
+      "category": "3d-modeling",
+      "description": "Control integral y automatización de Blender 4.4/5.0 mediante MCP: rigging, retargeting, shaders PBR, modificadores y exportación GLB/FBX en modo headless o live viewport.",
+      "repository": "https://github.com/sandraschi/blender-mcp",
+      "package": "blender-mcp",
+      "transport": "stdio",
+      "status": "operational",
+      "security_tier": "safe",
+      "config": {
+        "command": "uvx",
+        "args": ["blender-mcp"],
+        "env": {
+          "BLENDER_EXECUTABLE": "C:\\Program Files\\Blender Foundation\\Blender 5.0\\blender.exe"
+        }
+      },
+      "tools_provided": [
+        "rigging_tools",
+        "animation_tools",
+        "material_tools",
+        "mesh_tools",
+        "export_tools",
+        "scripting_tools"
+      ]
+    },
+    {
+      "id": "threews-3d-studio",
+      "name": "three.ws 3D Studio & Agent Platform",
+      "category": "3d-runtime",
+      "description": "Plataforma de avatares y agentes 3D en WebGL/Three.js. Generación, auto-rigging, animación, blendshapes faciales y exportación GLB optimizada.",
+      "repository": "https://github.com/nirholas/three.ws",
+      "package": "three.ws",
+      "transport": "streamable-http",
+      "status": "operational",
+      "security_tier": "safe",
+      "config": {
+        "url": "https://three.ws/api/mcp-3d"
+      },
+      "tools_provided": [
+        "generate_3d",
+        "auto_rig_avatar",
+        "retarget_animation",
+        "export_avatar_glb"
       ]
     },
     {

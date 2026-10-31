@@ -12,6 +12,8 @@ venv/
 
 # External cloned source repos used for research
 research/*_source/
+mcp/evaluated/blender-mcp/
+mcp/evaluated/three.ws/
 
 # IDE & OS
 .vscode/

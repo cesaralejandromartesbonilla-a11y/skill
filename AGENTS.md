@@ -48,3 +48,12 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
    - Separar Entrada de Usuario (Input), Lógica de Estado (State Machine), Fórmulas Físicas (Kinematics) y Representación Visual (Rendering).
 2. **Comunicación por Señales**:
    - Comunicación de abajo hacia arriba mediante `signal`; llamadas directas únicamente de arriba hacia abajo (`call`).
+
+---
+
+## 5. Control y Depuración Automatizada de Godot (`godot-mcp`)
+1. **Interacción con el Editor y Ejecución**:
+   - Para probar proyectos, verificar errores de consola en caliente o lanzar playtests, usa las herramientas del servidor MCP `godot` (`run_project`, `get_debug_output`, `stop_project`, `launch_editor`).
+2. **Manipulación de Escenas y Nodos**:
+   - Usar `create_scene`, `add_node`, `load_sprite` y `export_mesh_library` para automatizar la jerarquía de nodos sin errores manuales de sintaxis `.tscn`.
+

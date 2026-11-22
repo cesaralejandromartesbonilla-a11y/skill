@@ -71,4 +71,28 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
 3. **Andamiaje de Escenas en Un Disparo (`tools/godot_scene_scaffolder.py` / `batch_execute`)**:
    - Para crear jerarquías estándar de escenas (Props con colisión, CharacterBody3D con cámara o UI CanvasLayer), el agente debe ejecutar `tools/godot_scene_scaffolder.py` o emitir un único payload atómico mediante `batch_execute` de `godot-ai`.
 
+---
+
+## 7. Protocolo de Hojas de Ruta Jerárquicas (Etapa $\to$ Fase $\to$ Paso - Cero Prisa)
+1. **El Paradigma de la Torre Eiffel**:
+   - Todo proyecto o desarrollo debe estructurarse obligatoriamente en tres niveles: `Etapas` (macro-hitos estratégicos) $\to$ `Fases` (bloques modulares secuenciales con puertas de calidad / DoD) $\to$ `Pasos` (acciones atómicas `[EX-FY-PZZ]`).
+   - Cero prisa: Queda terminantemente PROHIBIDO "abarcar todo de golpe" o implementar código/assets de fases superiores sin haber cerrado y validado empíricamente los prerrequisitos y cimientos de las fases previas (como construir las 4 patas independientes y cimentarlas antes de montar el tramo de unión o la antena).
+2. **Dual-Track Roadmap**:
+   - Mantener sincronizados siempre `ROADMAP_DETAILED.md` (exhaustivo y vivo con Gates de Fase) y `ROADMAP_EXECUTIVE.md` (resumen ejecutivo visual de alto nivel con semáforo y barras de progreso por Etapa/Fase).
+   - Referencia técnica completa: [Docs/architecture/hierarchical_roadmap_standard.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/hierarchical_roadmap_standard.md).
+
+---
+
+## 8. Fidelidad Morfológica y Anatómica 3D (Prohibición de Primitivas Absurdas)
+1. **Cero Primitivas Sustitutas**:
+   - Queda terminantemente PROHIBIDO utilizar cilindros, cajas planas o primitivas geométricas no funcionales como placeholders de herramientas o componentes mecánicos complejos (ej. sustituir una vertedera de arado para campos duros por un cilindro).
+2. **Protocolo de 4 Puertas Anatómicas Obligatorio**:
+   - Todo modelo 3D mecánico o prop funcional debe pasar por:
+     1. *Descomposición Anatómica:* Identificar cada sub-pieza funcional (reja en cuña cortante, vertedera alabeada de volteo, costanera/dental plano guía, cama forjada, timón).
+     2. *Perfiles Paramétricos Específicos:* Superficies alabeadas, arcos helicoidales, biseles afilados y espesores reales de chapa.
+     3. *Ensamblaje Mecánico:* Uniones con pernos de seguridad antirocas, bridas y enganche tripuntal normalizado ISO 730 Cat II/III.
+     4. *Verificación Dimensional y Pivote:* Escala métrica realista y normalización del pivote en base $Y=0$.
+   - Referencia técnica completa: [Docs/architecture/functional_3d_anatomy_guide.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/functional_3d_anatomy_guide.md).
+
+
 

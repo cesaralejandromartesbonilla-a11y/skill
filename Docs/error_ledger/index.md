@@ -12,6 +12,8 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
 | **[ERR-002]** | Destello Blanco Fluorescente (Emission Blowout) | Blender / glTF | `Emission Strength` default > 0 en Principled BSDF | [Detalles](#err-002) |
 | **[ERR-003]** | Desincronización de Ejes FBX | Blender / FBX | Falta de aplicación de transformaciones (`Ctrl+A`) | [Detalles](#err-003) |
 | **[ERR-004]** | Fatiga por Micro-Llamadas Atómicas MCP | Antigravity / Godot | Abstracción atómica de MCPs en lugar de pipelines macro | [Detalles](#err-004) |
+| **[ERR-005]** | Apresuramiento en Hojas de Ruta ("Abarcar Todo") | Planificación / Roadmap | Falta de jerarquía en 3 niveles y gates intermedios | [Detalles](#err-005) |
+| **[ERR-006]** | Sustitución Morfológica Absurda (Cilindro por Vertedera) | Blender / Generación 3D | Omisión de descomposición anatómica funcional | [Detalles](#err-006) |
 
 ---
 
@@ -44,3 +46,22 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
 - **Solución Comprobada:** Invocar los scripts de un solo disparo:
   - [`tools/pipeline_3d_repair_export.py`](file:///c:/Users/cesar/Desktop/skill/tools/pipeline_3d_repair_export.py)
   - [`tools/godot_scene_scaffolder.py`](file:///c:/Users/cesar/Desktop/skill/tools/godot_scene_scaffolder.py)
+
+---
+
+### [ERR-005] Apresuramiento en Hojas de Ruta y Falta de Jerarquía ("Abarcar Todo de Golpe")
+- **Síntoma:** Los agentes generan listas planas de tareas y se apresuran a implementar interfaces o features de alto nivel antes de asentar los cimientos arquitectónicos o pruebas base.
+- **Causa Raíz:** Ausencia de una jerarquía estricta y de criterios de aceptación (*Definition of Done*) por bloques interdependientes.
+- **Solución Comprobada:** Aplicar la jerarquía de 3 niveles (`Etapa` $\to$ `Fase` $\to$ `Paso`) y el **Paradigma de la Torre Eiffel** (nadie construye la antena antes de cimentar y erigir minuciosamente las 4 patas independientes). Ver [Docs/architecture/hierarchical_roadmap_standard.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/hierarchical_roadmap_standard.md).
+
+---
+
+### [ERR-006] Sustitución Morfológica Absurda (La Herejía del Cilindro en Modelado 3D)
+- **Síntoma:** Cuando se solicita modelar un componente o herramienta compleja (ejemplo: *"vertedera para campos duros"*), el agente genera un cilindro o cubo primitivo trivial sin funcionalidad física ni filo.
+- **Causa Raíz:** Intentar generar geometría sin realizar primero una descomposición anatómica funcional de cada sub-pieza de ingeniería.
+- **Solución Comprobada:** Aplicar el **Protocolo de 4 Puertas Anatómicas**:
+  1. *Descomposición Anatómica Funcional:* Reja en cuña, vertedera alabeada de volteo, costanera/dental plano guía, cama forjada, timón y enganche tripuntal.
+  2. *Perfiles Paramétricos Específicos:* Superficies alabeadas/curvadas con espesores reales de chapa.
+  3. *Ensamblaje Mecánico:* Pernos de seguridad y bulones normalizados.
+  4. *Verificación Dimensional y Pivote en Base $Y=0$.* Ver [Docs/architecture/functional_3d_anatomy_guide.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/functional_3d_anatomy_guide.md).
+

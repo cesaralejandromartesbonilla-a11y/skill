@@ -13,6 +13,9 @@ venv/
 
 # External cloned source repos used for research
 research/*_source/
+research/godot-ai/
+research/GodotPrompter/
+research/QFramework/
 mcp/evaluated/blender-mcp/
 mcp/evaluated/three.ws/
 
@@ -27,6 +30,7 @@ Desktop.ini
 *.log
 tmp/
 temp/
+tmp_pipeline_export/
 
 # Large binary exports & intermediate render tests
 export/*.glb
@@ -34,6 +38,7 @@ export/*.fbx
 export/test_*.png
 export/verify_*.png
 export/verified_*.png
+tests/*.glb
 
 # Generated HTML examples (can be regenerated with render-examples.mjs)
 skills/archify/examples/*.html

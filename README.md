@@ -62,20 +62,21 @@ Este repositorio funciona como un **laboratorio y banco de herramientas (Tooling
 ```text
 skill/
 ├── README.md                 # Documento maestro de visión y registro (este archivo)
-├── skills/                   # Colección de skills desarrolladas o adaptadas
-│   └── [nombre-skill]/
-│       ├── SKILL.md          # Especificación y prompts de la skill
-│       ├── scripts/          # Scripts ejecutables (PowerShell, Python, Node, etc.)
-│       └── references/       # Documentación o esquemas de apoyo
+├── AGENTS.md                 # Protocolo global de agentes y prohibición de micro-llamadas
+├── Docs/                     # Arquitectura de documentación y punteros (Zero Token Waste)
+│   ├── master_index.md       # Directorio central navegable
+│   ├── error_ledger/         # Catálogo formal de causas raíces (ERR-001 a ERR-004)
+│   ├── architecture/         # Reglas modulares y alineación espacial (pivote Y=0, PBR)
+│   ├── pipelines/            # Manuales de scripts macro (3D y Godot)
+│   └── game_mechanics/       # Matriz de fusión de mecánicas (RETAIN/REPLACE/FUSE)
+├── skills/                   # Colección de skills lean optimizadas (< 120 caracteres)
+├── tools/                    # Pipelines macro y scripts de un solo disparo
+│   ├── pipeline_3d_repair_export.py # Reparación 3D, pivote Y=0 y traslado a Godot
+│   ├── godot_scene_scaffolder.py    # Andamiaje atómico de escenas .tscn
+│   ├── blender_universal_bridge.py  # Puente headless Blender 5.0 con soporte PBR/ORM
+│   └── audit_skills_tokens.py       # Telemetría de tokens en skills
 ├── mcp/                      # Configuraciones y adaptadores de servidores MCP
-│   ├── configs/              # Archivos de configuración de ejemplo (JSON/YAML)
-│   ├── evaluated/            # Notas y auditorías de MCPs probados
-│   └── custom/               # Servidores MCP desarrollados internamente
-├── tools/                    # Utilidades auxiliares, scripts de búsqueda y wrappers
-│   ├── scrapers/             # Búsqueda automatizada de repositorios/herramientas
-│   └── utils/                # Utilidades generales de soporte
 ├── research/                 # Registros de investigación de repositorios y software
-│   └── repos_mcp.md          # Directorio curado de repositorios MCP encontrados
 └── archive/                  # Elementos descartados o versiones previas (Punto de Rollback)
 ```
 

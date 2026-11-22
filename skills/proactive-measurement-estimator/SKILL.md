@@ -1,6 +1,6 @@
 ---
 name: proactive-measurement-estimator
-description: Protocolo de ingeniería y herramientas de cálculo dimensional, estimación de materiales (takeoff), despiece y aclaración proactiva de requerimientos. Úsalo SIEMPRE que el usuario plantee problemas de medición, construcción, cálculo de piezas/tablas/paneles, o preguntas amplias donde factores como vanos (ventanas/puertas), traslapes, orientación de corte, mermas, inclinaciones o tolerancias afecten drásticamente el resultado final.
+description: Cálculo dimensional, estimación de materiales (takeoff), despiece y aclaración proactiva de vanos, tolerancias y mermas.
 ---
 
 # Proactive Measurement & Estimator

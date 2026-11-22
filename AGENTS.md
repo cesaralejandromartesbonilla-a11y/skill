@@ -51,9 +51,24 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
 
 ---
 
-## 5. Control y Depuración Automatizada de Godot (`godot-mcp`)
-1. **Interacción con el Editor y Ejecución**:
-   - Para probar proyectos, verificar errores de consola en caliente o lanzar playtests, usa las herramientas del servidor MCP `godot` (`run_project`, `get_debug_output`, `stop_project`, `launch_editor`).
-2. **Manipulación de Escenas y Nodos**:
-   - Usar `create_scene`, `add_node`, `load_sprite` y `export_mesh_library` para automatizar la jerarquía de nodos sin errores manuales de sintaxis `.tscn`.
+## 5. Control y Depuración del Editor Godot (`godot-ai` + `GodotPrompter`)
+1. **Conexión en Vivo y Verificación**:
+   - Para probar proyectos, verificar errores de consola en caliente o capturar vista del viewport, usa el servidor MCP `godot-ai` (`editor_state`, `project_run`, `logs_read`, `editor_screenshot`).
+2. **Inspección y Parcheo Quirúrgico**:
+   - Usar `scene_get_hierarchy` para inspeccionar la escena activa y `script_patch` para aplicar cambios en caliente sin romper el estado del editor.
+3. **Sinergia con GodotPrompter**:
+   - GodotPrompter rige la arquitectura, el tipado estricto y los patrones (FSM, señales, recursos). `godot-ai` ejecuta y valida las mutaciones en el editor en vivo.
+
+---
+
+## 6. Prohibición de Micro-Llamadas Atómicas y Pipelines de Un Solo Disparo
+1. **Erradicación del Trabajo Manual "Paso a Paso"**:
+   - Queda terminantemente PROHIBIDO encadenar múltiples llamadas MCP atómicas (`execute_blender_code`, `node_create` x10) para tareas estándar de preparación de assets o andamiaje de escenas.
+2. **Pipeline Macro 3D a Godot (`tools/pipeline_3d_repair_export.py`)**:
+   - Para cualquier modelo 3D (.fbx, .obj, .gltf, .psk, .blend), el agente DEBE invocar el script unificado:
+     `python tools/pipeline_3d_repair_export.py --input <malla> --project <dir_godot> --category <props|characters> --trigger-import`
+   - Aplica automáticamente rotación y escala (`Ctrl+A`), normaliza el pivote a la base inferior ($Z = \min(Z)$ en Blender, $Y = 0$ en Godot), desinfecta mallas (merge doubles a 0.1mm), recalcula normales hacia el exterior, configura materiales PBR/ORM y traslada el activo a Godot registrando su UID en una sola operación.
+3. **Andamiaje de Escenas en Un Disparo (`tools/godot_scene_scaffolder.py` / `batch_execute`)**:
+   - Para crear jerarquías estándar de escenas (Props con colisión, CharacterBody3D con cámara o UI CanvasLayer), el agente debe ejecutar `tools/godot_scene_scaffolder.py` o emitir un único payload atómico mediante `batch_execute` de `godot-ai`.
+
 

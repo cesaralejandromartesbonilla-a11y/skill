@@ -1,6 +1,7 @@
 ---
 name: dual-roadmap
-description: Use when planning, tracking, or updating project roadmaps, requiring both an exhaustive, continuously updated living technical roadmap and a concise, visual executive summary for fast reading.
+description: Gestión de roadmaps técnicos exhaustivos y resúmenes ejecutivos visuales de alto nivel.
+
 license: MIT
 metadata:
   version: "1.0"

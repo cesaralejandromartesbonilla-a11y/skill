@@ -90,6 +90,66 @@ def find_armature_and_meshes():
     armature = armatures[0] if armatures else None
     return armature, meshes
 
+def apply_transforms(meshes, armature=None):
+    """Aplica todas las transformaciones (rotación, escala, posición) para evitar deformaciones en Godot."""
+    bpy.ops.object.select_all(action='DESELECT')
+    if armature:
+        armature.select_set(True)
+    for m in meshes:
+        m.select_set(True)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    print("[+] Transformaciones aplicadas (Ctrl+A -> Rotation, Scale, Location).")
+
+def normalize_pivot_to_base(meshes):
+    """
+    Normaliza el pivote al centro de la base inferior del modelo (Z = min(Z) en Blender, Y = 0 en Godot).
+    Cumple estrictamente con la regla godot-spatial-alignment.
+    """
+    if not meshes:
+        return
+    min_x = min_y = min_z = float('inf')
+    max_x = max_y = max_z = float('-inf')
+    
+    for obj in meshes:
+        for corner in obj.bound_box:
+            world_coord = obj.matrix_world @ mathutils.Vector(corner)
+            min_x = min(min_x, world_coord.x)
+            max_x = max(max_x, world_coord.x)
+            min_y = min(min_y, world_coord.y)
+            max_y = max(max_y, world_coord.y)
+            min_z = min(min_z, world_coord.z)
+            max_z = max(max_z, world_coord.z)
+            
+    target_origin = mathutils.Vector(((min_x + max_x) / 2.0, (min_y + max_y) / 2.0, min_z))
+    saved_cursor = bpy.context.scene.cursor.location.copy()
+    bpy.context.scene.cursor.location = target_origin
+    
+    for obj in meshes:
+        bpy.context.view_layer.objects.active = obj
+        obj.select_set(True)
+        bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+        # Alinear base del objeto a Z=0
+        obj.location.z -= min_z
+        obj.select_set(False)
+        
+    bpy.context.scene.cursor.location = saved_cursor
+    print(f"[+] Pivote normalizado a la base inferior: Z={min_z:.4f} -> 0.0 (Y=0 en Godot)")
+
+def sanitize_geometry(meshes):
+    """Elimina vértices duplicados, caras degeneradas y recalcula normales hacia afuera."""
+    for obj in meshes:
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.mode_set(mode='EDIT')
+        bpy.ops.mesh.select_all(action='SELECT')
+        # Merge by distance (remover dobles a 0.1mm)
+        bpy.ops.mesh.remove_doubles(threshold=0.0001)
+        # Recalcular normales al exterior
+        bpy.ops.mesh.normals_make_consistent(inside=False)
+        # Eliminar elementos sueltos
+        bpy.ops.mesh.delete_loose()
+        bpy.ops.object.mode_set(mode='OBJECT')
+        print(f"[+] Geometría desinfectada (merge doubles, normales exteriores) para: {obj.name}")
+
 def clean_vertex_colors(meshes):
     """Elimina las capas de colores de vértices (evita tintes y colores payaso)."""
     for mesh_obj in meshes:
@@ -163,22 +223,39 @@ def setup_pbr_material(mesh_obj, args):
             
         links.new(norm_map_node.outputs['Normal'], bsdf_node.inputs['Normal'])
     
-    # 3. Rugosidad / Metálico
-    if args.roughness and os.path.exists(args.roughness):
-        rough_img = bpy.data.images.load(args.roughness)
-        rough_img.colorspace_settings.name = 'Non-Color'
-        rough_node = nodes.new(type='ShaderNodeTexImage')
-        rough_node.image = rough_img
-        rough_node.location = (-300, -500)
-        links.new(rough_node.outputs['Color'], bsdf_node.inputs['Roughness'])
+    # 3. Rugosidad / Metálico / ORM
+    if hasattr(args, 'orm') and args.orm and os.path.exists(args.orm):
+        orm_img = bpy.data.images.load(args.orm)
+        orm_img.colorspace_settings.name = 'Non-Color'
+        orm_node = nodes.new(type='ShaderNodeTexImage')
+        orm_node.image = orm_img
+        orm_node.location = (-600, -500)
         
-    if args.metallic and os.path.exists(args.metallic):
-        metal_img = bpy.data.images.load(args.metallic)
-        metal_img.colorspace_settings.name = 'Non-Color'
-        metal_node = nodes.new(type='ShaderNodeTexImage')
-        metal_node.image = metal_img
-        metal_node.location = (-300, -700)
-        links.new(metal_node.outputs['Color'], bsdf_node.inputs['Metallic'])
+        sep_orm = nodes.new(type='ShaderNodeSeparateColor')
+        sep_orm.location = (-300, -500)
+        links.new(orm_node.outputs['Color'], sep_orm.inputs['Color'])
+        
+        # Red = AO (ao_texture_channel = 0)
+        # Green = Roughness (roughness_texture_channel = 1)
+        links.new(sep_orm.outputs['Green'], bsdf_node.inputs['Roughness'])
+        # Blue = Metallic (metallic_texture_channel = 2)
+        links.new(sep_orm.outputs['Blue'], bsdf_node.inputs['Metallic'])
+    else:
+        if args.roughness and os.path.exists(args.roughness):
+            rough_img = bpy.data.images.load(args.roughness)
+            rough_img.colorspace_settings.name = 'Non-Color'
+            rough_node = nodes.new(type='ShaderNodeTexImage')
+            rough_node.image = rough_img
+            rough_node.location = (-300, -500)
+            links.new(rough_node.outputs['Color'], bsdf_node.inputs['Roughness'])
+            
+        if args.metallic and os.path.exists(args.metallic):
+            metal_img = bpy.data.images.load(args.metallic)
+            metal_img.colorspace_settings.name = 'Non-Color'
+            metal_node = nodes.new(type='ShaderNodeTexImage')
+            metal_node.image = metal_img
+            metal_node.location = (-300, -700)
+            links.new(metal_node.outputs['Color'], bsdf_node.inputs['Metallic'])
         
     # Configuraciones de renderizado de material
     if args.two_sided:
@@ -279,6 +356,10 @@ def parse_args():
     parser.add_argument("--normal", help="Textura Normal Map")
     parser.add_argument("--roughness", help="Textura Roughness/Mascara")
     parser.add_argument("--metallic", help="Textura Metallic")
+    parser.add_argument("--orm", help="Textura ORM empaquetada (R=AO, G=Roughness, B=Metallic)")
+    parser.add_argument("--normalize-pivot", action="store_true", help="Normaliza el pivote al centro de la base inferior (Z=min(Z) -> 0.0)")
+    parser.add_argument("--apply-transforms", action="store_true", help="Aplica todas las transformaciones (rotación, escala, posición)")
+    parser.add_argument("--sanitize-geometry", action="store_true", help="Elimina dobles vertices (0.1mm) y recalcula normales exteriores")
     parser.add_argument("--invert-normal-y", action="store_true", help="Invertir canal verde de Normal (DirectX a OpenGL)")
     parser.add_argument("--clean-vertex-colors", action="store_true", help="Eliminar capas de vertex colors")
     parser.add_argument("--two-sided", action="store_true", help="Desactivar backface culling (doble cara)")
@@ -307,19 +388,31 @@ def main():
     import_mesh(mesh_path)
     armature, meshes = find_armature_and_meshes()
     
-    # 2. Limpiar vertex colors si se solicita
+    # 2. Desinfección y normalización espacial
+    if args.apply_transforms and meshes:
+        apply_transforms(meshes, armature)
+        
+    if args.sanitize_geometry and meshes:
+        sanitize_geometry(meshes)
+        
+    if args.normalize_pivot and meshes:
+        normalize_pivot_to_base(meshes)
+        if args.apply_transforms:
+            apply_transforms(meshes, armature)
+
+    # 3. Limpiar vertex colors si se solicita
     if args.clean_vertex_colors and meshes:
         clean_vertex_colors(meshes)
         
-    # 3. Configurar materiales PBR
+    # 4. Configurar materiales PBR
     for mesh_obj in meshes:
         setup_pbr_material(mesh_obj, args)
         
-    # 4. Importar animaciones si existen
+    # 5. Importar animaciones si existen
     if args.anims and armature:
         import_animations(armature, args.anims)
         
-    # 5. Exportar
+    # 6. Exportar
     export_model(output_path, fmt)
 
 if __name__ == "__main__":

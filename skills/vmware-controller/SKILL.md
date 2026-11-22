@@ -1,6 +1,6 @@
 ---
 name: vmware-controller
-description: Control y automatización de VMware Workstation Player mediante la CLI vmrun y vmplayer ubicada en C:\Program Files (x86)\VMware\VMware Player. Úsalo para encender, apagar, suspender, listar y ejecutar programas o pruebas dentro de máquinas virtuales de forma desatendida.
+description: Control y automatización de VMware Workstation Player mediante CLI vmrun (start, stop, suspend, ejecutar programas).
 ---
 
 # VMware Controller (Workstation Player CLI)

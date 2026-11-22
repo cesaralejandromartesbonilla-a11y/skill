@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/props/test_repaired_box.glb" id="1_mesh"]
+
+[sub_resource type="BoxShape3D" id="1_col"]
+size = Vector3(1, 1, 1)
+
+[node name="TestBox" type="StaticBody3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_mesh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("1_col")

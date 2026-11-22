@@ -1,6 +1,6 @@
 ---
 name: universal-asset-porter
-description: "Pipeline automatizado para extraer activos de motores de videojuegos (Unity, Unreal Engine, Source, etc.), procesarlos y estandarizarlos utilizando Blender 5.0 headless como intermediario, y exportarlos a Godot 4.6 (glTF/GLB), FBX o USD."
+description: Extracción y conversión de activos 3D (Unreal, Unity, Source) a Godot 4.6 (glTF/GLB) vía Blender 5.0 headless.
 license: MIT
 metadata:
   version: "1.0"

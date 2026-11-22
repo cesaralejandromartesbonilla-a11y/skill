@@ -26,6 +26,10 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
      - `DISCARD`: Elementos descartados.
 3. **Prototipado Greybox**:
    - Todo controlador de juego nuevo debe verificarse primero con geometría primitiva (`CapsuleShape3D`, `BoxShape3D`) y gráficos de velocidad en tiempo real antes de aplicar cualquier arte visual.
+4. **Validación Física Empírica (Cero Validadores Puramente Matemáticos)**:
+   - Queda terminantemente PROHIBIDO declarar válida una mecánica física mediante cálculos matemáticos estáticos o fórmulas abstractas que ignoran fricción, masa y colisiones reales en el motor.
+   - El agente DEBE proponer activamente al usuario crear/configurar una Escena de Test Físico Mínimo (`res://tests/physical/test_<mecanica>.tscn`) con un sensor `Area3D` objetivo.
+   - Dicha escena debe registrar en consola salidas de texto estructuradas que expliquen de forma inequívoca **QUÉ PASÓ Y POR QUÉ PASÓ** (evento, telemetría y causa física). Ver [Docs/architecture/physical_validation_harness.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/physical_validation_harness.md).
 
 ---
 
@@ -59,9 +63,9 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
 3. **Sinergia con GodotPrompter**:
    - GodotPrompter rige la arquitectura, el tipado estricto y los patrones (FSM, señales, recursos). `godot-ai` ejecuta y valida las mutaciones en el editor en vivo.
 4. **Aprovisionamiento Obligatorio del Addon (Anti-Evasión)**:
-   - Antes de realizar cualquier tarea en un proyecto de Godot, el agente DEBE verificar si `addons/godot_ai` está instalado y registrado en `project.godot` (`python tools/setup_godot_ai_addon.py --project <dir> --check`).
+   - Antes de realizar cualquier tarea en un proyecto de Godot, el agente DEBE verificar si `addons/godot_ai` está instalado y registrado en `project.godot` (`setup-godot-ai --project <dir> --check` o `python c:/Users/cesar/Desktop/skill/tools/setup_godot_ai_addon.py --project <dir> --check`).
    - Si no está configurado, el agente DEBE ejecutar de inmediato:
-     `python tools/setup_godot_ai_addon.py --project <dir_godot>`
+     `setup-godot-ai --project <dir_godot>`
    - Queda terminantemente PROHIBIDO evadir el uso de las herramientas MCP de `godot-ai` por omitir la instalación previa del addon. Ver [Docs/pipelines/godot_ai_setup.md](file:///c:/Users/cesar/Desktop/skill/Docs/pipelines/godot_ai_setup.md).
 
 ---

@@ -45,6 +45,7 @@ Skip any step = lying, not verifying
 | Build succeeds | Build command: exit 0 | Linter passing, logs look good |
 | Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
 | Regression test works | Red-green cycle verified | Test passes once |
+| Physics / gameplay works | Physical test scene execution with Area3D: exit 0 & [TEST-FISICO:EXITO] | Static math calculation, isolated Python formula check |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
 
@@ -96,6 +97,12 @@ Skip any step = lying, not verifying
 ```
 ✅ Re-read plan → Create checklist → Verify each → Report gaps or completion
 ❌ "Tests pass, phase complete"
+```
+
+**Physics & Gameplay Mechanics:**
+```
+✅ Propose physical test scene with Area3D → Run in Godot → Read [TEST-FISICO:EXITO] and telemetry
+❌ "Math formula looks right" / calculating acceleration in Python without running Godot physics
 ```
 
 **Agent delegation:**

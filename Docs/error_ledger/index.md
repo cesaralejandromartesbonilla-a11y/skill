@@ -15,6 +15,7 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
 | **[ERR-005]** | Apresuramiento en Hojas de Ruta ("Abarcar Todo") | Planificación / Roadmap | Falta de jerarquía en 3 niveles y gates intermedios | [Detalles](#err-005) |
 | **[ERR-006]** | Sustitución Morfológica Absurda (Cilindro por Vertedera) | Blender / Generación 3D | Omisión de descomposición anatómica funcional | [Detalles](#err-006) |
 | **[ERR-007]** | Omisión del Addon godot_ai y Desconexión MCP | Godot / MCP godot-ai | Proyecto Godot sin plugin ni configuración en project.godot | [Detalles](#err-007) |
+| **[ERR-008]** | Falso Positivo por Validador Puramente Matemático | Godot / Físicas y Mecánicas | Fórmulas abstractas que ignoran fricción, masa y colisiones | [Detalles](#err-008) |
 
 ---
 
@@ -74,5 +75,13 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
 - **Solución Comprobada:** Ejecutar el aprovisionador en un solo disparo:
   `python tools/setup_godot_ai_addon.py --project <ruta_al_proyecto>`
   Ver [Docs/pipelines/godot_ai_setup.md](file:///c:/Users/cesar/Desktop/skill/Docs/pipelines/godot_ai_setup.md).
+
+---
+
+### [ERR-008] Falso Positivo por Validadores Puramente Matemáticos en Mecánicas Físicas
+- **Síntoma:** Un script de verificación matemática en Python declara "aprobada" una mecánica (ej. aceleración o frenado de un vehículo), pero al jugar en Godot el vehículo patina, no sube rampas, vuelca en curvas o atraviesa el suelo.
+- **Causa Raíz:** Las fórmulas analíticas abstractas ignoran el integrador de físicas a 60 Hz, las normales de colisión, el agarre de neumáticos, la fricción de materiales y la suspensión real.
+- **Solución Comprobada:** Proponer y ejecutar una Escena de Test Físico Mínimo con sensor `Area3D` (`physical_test_area.gd`) que imprima diagnósticos descriptivos ("QUÉ PASÓ Y POR QUÉ PASÓ"). Ver [Docs/architecture/physical_validation_harness.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/physical_validation_harness.md).
+
 
 

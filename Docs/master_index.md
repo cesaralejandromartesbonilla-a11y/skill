@@ -17,6 +17,7 @@
 | **Alineación Espacial** | Normalización de pivotes en base inferior ($Y=0$) y mapeo de canales PBR/ORM. | [Docs/architecture/spatial_alignment.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/spatial_alignment.md) |
 | **Hojas de Ruta Jerárquicas** | Estándar Etapa $\to$ Fase $\to$ Paso y Paradigma de la Torre Eiffel (Cero Apresuramiento). | [Docs/architecture/hierarchical_roadmap_standard.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/hierarchical_roadmap_standard.md) |
 | **Fidelidad Morfológica 3D** | Protocolo anatómico de 4 puertas y prohibición de primitivas/cilindros absurdos. | [Docs/architecture/functional_3d_anatomy_guide.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/functional_3d_anatomy_guide.md) |
+| **Validación Física con Area3D** | Protocolo de pruebas físicas empíricas en motor vs cálculos analíticos abstractos. | [Docs/architecture/physical_validation_harness.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/physical_validation_harness.md) |
 | **Recreación de Mecánicas** | Protocolo matemático de ingeniería inversa y matriz de fusión (RETAIN, REPLACE, FUSE). | [Docs/game_mechanics/fusion_matrix.md](file:///c:/Users/cesar/Desktop/skill/Docs/game_mechanics/fusion_matrix.md) |
 
 ---

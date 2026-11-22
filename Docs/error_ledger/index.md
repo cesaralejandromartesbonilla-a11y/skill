@@ -14,6 +14,7 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
 | **[ERR-004]** | Fatiga por Micro-Llamadas Atómicas MCP | Antigravity / Godot | Abstracción atómica de MCPs en lugar de pipelines macro | [Detalles](#err-004) |
 | **[ERR-005]** | Apresuramiento en Hojas de Ruta ("Abarcar Todo") | Planificación / Roadmap | Falta de jerarquía en 3 niveles y gates intermedios | [Detalles](#err-005) |
 | **[ERR-006]** | Sustitución Morfológica Absurda (Cilindro por Vertedera) | Blender / Generación 3D | Omisión de descomposición anatómica funcional | [Detalles](#err-006) |
+| **[ERR-007]** | Omisión del Addon godot_ai y Desconexión MCP | Godot / MCP godot-ai | Proyecto Godot sin plugin ni configuración en project.godot | [Detalles](#err-007) |
 
 ---
 
@@ -64,4 +65,14 @@ Catálogo formal de errores no triviales, diagnósticos de causa raíz y solucio
   2. *Perfiles Paramétricos Específicos:* Superficies alabeadas/curvadas con espesores reales de chapa.
   3. *Ensamblaje Mecánico:* Pernos de seguridad y bulones normalizados.
   4. *Verificación Dimensional y Pivote en Base $Y=0$.* Ver [Docs/architecture/functional_3d_anatomy_guide.md](file:///c:/Users/cesar/Desktop/skill/Docs/architecture/functional_3d_anatomy_guide.md).
+
+---
+
+### [ERR-007] Omisión del Addon godot_ai y Desconexión / Evasión del Servidor MCP
+- **Síntoma:** El agente evita utilizar las herramientas MCP de `godot-ai` (`editor_state`, `scene_get_hierarchy`, `node_create`, `project_run`), reporta fallos de conexión por socket o vuelve a la edición manual descontextualizada.
+- **Causa Raíz:** El proyecto de Godot objetivo carece de la carpeta `addons/godot_ai` o no tiene registrados el plugin en `[editor_plugins]` y el autoload `_mcp_game_helper` en `project.godot`.
+- **Solución Comprobada:** Ejecutar el aprovisionador en un solo disparo:
+  `python tools/setup_godot_ai_addon.py --project <ruta_al_proyecto>`
+  Ver [Docs/pipelines/godot_ai_setup.md](file:///c:/Users/cesar/Desktop/skill/Docs/pipelines/godot_ai_setup.md).
+
 

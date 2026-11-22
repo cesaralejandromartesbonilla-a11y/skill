@@ -58,6 +58,11 @@ Este archivo de reglas globales aplica a **todas las sesiones, agentes y espacio
    - Usar `scene_get_hierarchy` para inspeccionar la escena activa y `script_patch` para aplicar cambios en caliente sin romper el estado del editor.
 3. **Sinergia con GodotPrompter**:
    - GodotPrompter rige la arquitectura, el tipado estricto y los patrones (FSM, señales, recursos). `godot-ai` ejecuta y valida las mutaciones en el editor en vivo.
+4. **Aprovisionamiento Obligatorio del Addon (Anti-Evasión)**:
+   - Antes de realizar cualquier tarea en un proyecto de Godot, el agente DEBE verificar si `addons/godot_ai` está instalado y registrado en `project.godot` (`python tools/setup_godot_ai_addon.py --project <dir> --check`).
+   - Si no está configurado, el agente DEBE ejecutar de inmediato:
+     `python tools/setup_godot_ai_addon.py --project <dir_godot>`
+   - Queda terminantemente PROHIBIDO evadir el uso de las herramientas MCP de `godot-ai` por omitir la instalación previa del addon. Ver [Docs/pipelines/godot_ai_setup.md](file:///c:/Users/cesar/Desktop/skill/Docs/pipelines/godot_ai_setup.md).
 
 ---
 

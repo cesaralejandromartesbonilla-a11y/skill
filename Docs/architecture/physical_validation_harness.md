@@ -16,7 +16,7 @@ Este enfoque produce **falsos positivos críticos** porque las fórmulas analít
 3. **Suspensión, Inercia y Centro de Masas:** Un cálculo matemático puede decir que un vehículo alcanza 60 km/h en 3 segundos, pero en el motor el vehículo vuelca en la primera curva porque el centro de masa está elevado, o las ruedas patinan sin tracción por falta de carga normal.
 4. **Pérdida de Adherencia (Slip Ratio):** Una simulación de tracción en pendientes o barro no se comporta como un modelo rectilíneo ideal.
 
-**Regla de Oro:** Ninguna mecánica cinemática o física se da por aprobada sin haber sido ejecutada y medida empíricamente en una **Escena de Test Mínimo Físico**.
+**Regla de Oro:** Ninguna mecánica cinemática o física se da por aprobada sin haber sido ejecutada y medida empíricamente por el jugador o usuario en una **Escena de Test Mínimo Físico**.
 
 ---
 
@@ -108,7 +108,7 @@ El script del sensor `Area3D` (o el supervisor de la arena) DEBE registrar salid
 
 ---
 
-## 5. Plantilla GDScript Reutilizable: `physical_test_area.gd`
+## 5. Plantilla de ejemplo en GDScript Reutilizable: `physical_test_area.gd`
 
 ```gdscript
 extends Area3D
